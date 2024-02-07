@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://djbfji7wocskg"]
+
+[ext_resource type="PackedScene" uid="uid://bbd8qjipxfupg" path="res://Objects/ball.tscn" id="1_27ecr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yia60"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_trkic"]
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.762635, 0.64683, 0, -0.64683, 0.762635, 0, 14.2845, 16.752)
+
+[node name="Ball" parent="." instance=ExtResource("1_27ecr")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 7.2751, 0)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+gi_mode = 2
+mesh = SubResource("PlaneMesh_yia60")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_trkic")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0373, 13.9321)
